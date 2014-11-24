@@ -8,27 +8,27 @@
         <version>7</version>
     </parent>
 
-    <groupId>org.paylogic</groupId>
+    <groupId>com.trendradius</groupId>
     <artifactId>Fogbugz</artifactId>
     <version>2.2.10-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Fogbugz API interface</name>
     <description>Java classes to provide interface to work with FogBugz 7+ XML API</description>
-    <url>https://github.com/paylogic/java-fogbugz/</url>
+    <url>https://github.com/TrendRadius/java-fogbugz/</url>
 
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>https://github.com/paylogic/java-fogbugz/LICENSE</url>
+            <url>https://github.com/TrendRadiusAlex/java-fogbugz/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:paylogic/java-fogbugz.git</connection>
-        <developerConnection>scm:git:git@github.com:paylogic/java-fogbugz.git</developerConnection>
-        <url>git@github.com:paylogic/java-fogbugz.git</url>
+        <connection>scm:git:git@github.com:TrendRadiusAlex/java-fogbugz.git</connection>
+        <developerConnection>scm:git:git@github.com:TrendRadiusAlex/java-fogbugz.git</developerConnection>
+        <url>git@github.com:TrendRadiusAlex/java-fogbugz.git</url>
       <tag>HEAD</tag>
   </scm>
 
@@ -98,14 +98,16 @@
     </dependencies>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>deployment</id>
+            <name>Internal Releases</name>
+            <url>http://23.99.226.15:8081/nexus/content/repositories/releases/</url>
         </repository>
+        <snapshotRepository>
+            <id>deployment</id>
+            <name>Internal Releases</name>
+            <url>http://23.99.226.15:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <build>
