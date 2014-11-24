@@ -14,8 +14,9 @@ public class FogbugzEvent implements Comparable<FogbugzEvent> {
     @Getter private final Date dateTimeStamp;
     @Getter private final String description;
     @Getter private final String sPerson;
+    @Getter private final String sText;
 
-    public FogbugzEvent(int id, int caseId, String verb, int person, int personAssignedTo, Date dateTimeStamp, String description, String sPerson) {
+    public FogbugzEvent(int id, int caseId, String verb, int person, int personAssignedTo, Date dateTimeStamp, String description, String sPerson, String sText) {
         this.id = id;
         this.caseId = caseId;
         this.verb = verb;
@@ -24,6 +25,7 @@ public class FogbugzEvent implements Comparable<FogbugzEvent> {
         this.dateTimeStamp = dateTimeStamp;
         this.description = description;
         this.sPerson = sPerson;
+        this.sText = sText;
     }
 
     public int compareTo(FogbugzEvent o) {
@@ -40,7 +42,8 @@ public class FogbugzEvent implements Comparable<FogbugzEvent> {
                 "Person:\t" + Integer.toString(this.person) + "\n" +
                 "AssignedTo:\t" + Integer.toString(this.personAssignedTo) + "\n" +
                 "Description:\t" + this.description + "\n" +
-                "sPerson:\t" + this.sPerson + "\n";
+                "sPerson:\t" + this.sPerson + "\n" + 
+                "Text:\t" + this.sText + "\n";
     }
 }
 

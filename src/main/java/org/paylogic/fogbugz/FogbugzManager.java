@@ -19,6 +19,8 @@ import java.net.URLEncoder;
 import java.util.*;
 import java.util.logging.Level;
 
+import org.paylogic.fogbugz.FogbugzCase;
+
 /**
  * Manager for FogbugzCase objects. Use this to retrieve, save and create cases.
  */
@@ -135,7 +137,7 @@ public class FogbugzManager {
         HashMap params = new HashMap();  // Hashmap defaults to <String, String>
         params.put("cmd", "search");
         params.put("q", query);
-        params.put("cols", "ixBug,tags,fOpen,sTitle,sFixFor,ixPersonOpenedBy,ixPersonAssignedTo" + // No trailing comma
+        params.put("cols", "ixBug,tags,fOpen,sTitle,sFixFor,dtOpened,ixPersonOpenedBy,ixPersonAssignedTo,sArea,sProject,ixPriority" + // No trailing comma
                 this.getCustomFieldsCSV());
 
         Document doc = null;
@@ -198,7 +200,11 @@ public class FogbugzManager {
                         doc.getElementsByTagName(this.approvedRevisionFieldname).item(0).getTextContent() : "",
                 (this.ciProjectFieldName != null && !this.ciProjectFieldName.isEmpty()) ?
                         doc.getElementsByTagName(this.ciProjectFieldName).item(0).getTextContent() : "",
-                doc.getElementsByTagName("sFixFor").item(0).getTextContent()
+                doc.getElementsByTagName("sFixFor").item(0).getTextContent(),
+                doc.getElementsByTagName("sArea").item(0).getTextContent(),
+                doc.getElementsByTagName("sProject").item(0).getTextContent(),
+                Integer.parseInt(doc.getElementsByTagName("ixPriority").item(0).getTextContent()),
+                doc.getElementsByTagName("dtOpened").item(0).getTextContent()
         );
     }
 
@@ -230,7 +236,8 @@ public class FogbugzManager {
                             Integer.parseInt(currentNode.getElementsByTagName("ixPersonAssignedTo").item(0).getTextContent()), // personAssignedTo
                             DatatypeConverter.parseDateTime(currentNode.getElementsByTagName("dt").item(0).getTextContent()).getTime(), // dateTime
                             currentNode.getElementsByTagName("evtDescription").item(0).getTextContent(), // evtDescription
-                            currentNode.getElementsByTagName("sPerson").item(0).getTextContent() // sPerson
+                            currentNode.getElementsByTagName("sPerson").item(0).getTextContent(), // sPerson
+                            currentNode.getElementsByTagName("s").item(0).getTextContent() //s (sText)
                     ));
                 }
             }
@@ -362,7 +369,8 @@ public class FogbugzManager {
             return null;
         }
         String fullName = doc.getElementsByTagName("sFullName").item(0).getTextContent().trim();
-        return new FogbugzUser(ix, fullName);
+        String emailAddress = doc.getElementsByTagName("sEmail").item(0).getTextContent().trim();
+        return new FogbugzUser(ix, fullName, emailAddress);
 
     }
 

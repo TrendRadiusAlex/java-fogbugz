@@ -10,3 +10,9 @@
 **/work/
 
 *.iml
+/target/
+
+*.project
+.classpath
+*.prefs
+src/main/java/FogbugzDemo.java

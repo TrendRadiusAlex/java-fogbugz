@@ -47,7 +47,7 @@ public class UserTest {
 
         verify(tested);
 
-        assert parsed.equals(new FogbugzUser(1, "First Last"));
+        assert parsed.equals(new FogbugzUser(1, "First Last", "firstlast@domain.com"));
     }
 
     private Document fetchDocumentFromFile(String filename) throws ParserConfigurationException, IOException, SAXException {

@@ -18,7 +18,11 @@ public class FogbugzCase {
     @Getter @Setter private List<String> tags;
     @Getter @Setter private boolean isOpen;
     @Getter @Setter private String milestone;
-
+    @Getter @Setter private String sArea;
+    @Getter @Setter private String sProject;
+    @Getter @Setter private int ixPriority;
+    @Getter @Setter private String sDateOpened;
+    
 
     // Our custom fields. TODO: find nicer way to include custom fields.
     @Getter @Setter private String featureBranch;
@@ -30,7 +34,7 @@ public class FogbugzCase {
     public FogbugzCase(int id, String title, int openedBy, int assignedTo,
                        List<String> tags, boolean isOpen, String featureBranch,
                        String originalBranch, String targetBranch, String approvedRevision, String ciProject,
-                       String milestone) {
+                       String milestone, String sArea, String sProject, int ixPriority, String sDateOpened) {
         this.id = id;
         this.title = title;
         this.openedBy = openedBy;
@@ -43,14 +47,18 @@ public class FogbugzCase {
         this.milestone = milestone;
         this.approvedRevision = approvedRevision;
         this.ciProject = ciProject;
+        this.sArea = sArea;
+        this.sProject = sProject;
+        this.ixPriority = ixPriority;
+        this.sDateOpened = sDateOpened;
     }
 
     public FogbugzCase(int id, String title, int openedBy, int assignedTo,
                        String tags, boolean isOpen, String featureBranch,
                        String originalBranch, String targetBranch, String approvedRevision, String ciProject,
-                       String milestone) {
+                       String milestone, String sArea, String sProject, int ixPriority, String sDateOpened) {
         this(id, title, openedBy, assignedTo, tagsFromCSV(tags), isOpen, featureBranch, originalBranch,
-                targetBranch, approvedRevision, ciProject, milestone);
+                targetBranch, approvedRevision, ciProject, milestone, sArea, sProject, ixPriority, sDateOpened);
     }
 
     /**
@@ -137,7 +145,11 @@ public class FogbugzCase {
             this.targetBranch.equals(o.getTargetBranch()) &&
             this.milestone.equals(o.getMilestone()) &&
             this.approvedRevision.equals(o.getApprovedRevision()) &&
-            this.ciProject.equals(o.getCiProject())
+            this.ciProject.equals(o.getCiProject()) &&
+            this.sArea.equals(o.getSArea()) &&
+            this.sProject.equals(o.getSProject()) &&
+            this.ixPriority == o.getIxPriority() &&
+            this.sDateOpened == o.getSDateOpened()
         ) {
             return true;
         } else {

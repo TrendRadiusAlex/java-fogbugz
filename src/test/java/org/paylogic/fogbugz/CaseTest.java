@@ -54,7 +54,7 @@ class CaseTest {
                 "plugin_customfields_at_fogcreek_com_approvedxrevisiona44", "cixproject", 2, 2);
 
         FogbugzCase expected = new FogbugzCase(7, "HALLO!", 2, 2, "merged", true,
-                                               "maikelwever/repo1#c7", "r1336", "r1336", "1336", "asdf1234", "myproject");
+                                               "maikelwever/repo1#c7", "r1336", "r1336", "1336", "asdf1234", "myMilestone","myArea", "myProject", 1, "2014-11-11T11:11:11Z");
 
         expectPrivate(tested, "getFogbugzDocument", anyObject()).andReturn(fetchDocumentFromFile("test_case_7.xml"));
         replay(tested);
@@ -81,7 +81,7 @@ class CaseTest {
         verify(tested);
 
         assert cases.size() == 1;
-        assert cases.get(0) == new FogbugzCase(1, "Test case name", 1, 1, "", true, null, null, null, null, null, null);
+        assert cases.get(0) == new FogbugzCase(1, "Test case name", 1, 1, "", true, null, null, null, null, null, null,null, null, 1, null);
 
     }
 
@@ -90,7 +90,7 @@ class CaseTest {
         FogbugzManager tested = createPartialMock(FogbugzManager.class, new String[]{"getFogbugzDocument"},
                 "http://localhost/fogbugz/", "asdfasdf12341234", "", "", "", "", "", 2, 2);
 
-        FogbugzCase expected = new FogbugzCase(7, "HALLO!", 2, 2, "merged", true, "", "", "", "", "1336", "myproject");
+        FogbugzCase expected = new FogbugzCase(7, "HALLO!", 2, 2, "merged", true, "", "", "", "", "1336", "myMilestone","myArea", "myProject", 1, "2014-11-11T11:11:11Z");
 
         expectPrivate(tested, "getFogbugzDocument", anyObject()).andReturn(fetchDocumentFromFile("test_case_7_no_customfields.xml"));
         replay(tested);
@@ -105,7 +105,7 @@ class CaseTest {
     public void testFetchCaseByIdWithNullCustomFields() throws Exception {
         FogbugzManager tested = createPartialMock(FogbugzManager.class, new String[]{"getFogbugzDocument"});
 
-        FogbugzCase expected = new FogbugzCase(7, "HALLO!", 2, 2, "merged", true, "", "", "", "", "1336", "myproject");
+        FogbugzCase expected = new FogbugzCase(7, "HALLO!", 2, 2, "merged", true, "", "", "", "", "1336", "myMilestone","myArea", "myProject", 1, "2014-11-11T11:11:11Z");
 
         expectPrivate(tested, "getFogbugzDocument", anyObject()).andReturn(fetchDocumentFromFile("test_case_7_no_customfields.xml"));
         replay(tested);
