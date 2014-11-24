@@ -147,7 +147,7 @@ public class FogbugzManager {
             throw new InvalidResponseException(e.getMessage());
         }
 
-        // Check for case count in cases tag, so we know wheter to parse the response ever further or not.
+        // Check for case count in cases tag, so we know whether to parse the response ever further or not.
         int caseCount = 0;
         try {
             Node casesContainer = doc.getElementsByTagName("cases").item(0);
@@ -155,9 +155,9 @@ public class FogbugzManager {
         } catch (NumberFormatException e) {
             log.log(Level.INFO, "No valid number in case count XML response.", e);
         }
-        if (caseCount < 1) {
-            throw new NoSuchCaseException("Fogbugz did not return a case for query id " + query);
-        }
+        //if (caseCount < 1) {
+        //    throw new NoSuchCaseException("Fogbugz did not return a case for query id " + query);
+        //}
 
         NodeList caseNodes = doc.getElementsByTagName("case");
         ArrayList<FogbugzCase> caseList = new ArrayList<FogbugzCase>();
