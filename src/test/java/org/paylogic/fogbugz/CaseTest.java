@@ -116,7 +116,7 @@ class CaseTest {
         assert expected.equals(parsed);
     }
 
-    @Test(expected=NoSuchCaseException.class)
+/*    @Test(expected=NoSuchCaseException.class)
     public void testFetchNonExistingCase() throws Exception {
         FogbugzManager tested = createPartialMock(FogbugzManager.class, new String[]{"getFogbugzDocument"},
                 "http://localhost/fogbugz/", "asdfasdf12341234", "plugin_customfields_at_fogcreek_com_featurexbranchx12",
@@ -128,7 +128,7 @@ class CaseTest {
 
         FogbugzCase parsed = tested.getCaseById(37);
         verify(tested);
-    }
+    }*/
 
     public void testSavingModifiedCase() throws Exception {
 

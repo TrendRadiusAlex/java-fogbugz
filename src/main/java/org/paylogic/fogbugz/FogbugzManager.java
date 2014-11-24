@@ -99,7 +99,7 @@ public class FogbugzManager {
                 output += "&" + URLEncoder.encode(key, "UTF-8") + "=" + URLEncoder.encode(value, "UTF-8");
             }
         }
-        FogbugzManager.log.info("Generated URL to send to Fogbugz: " + output);
+        //FogbugzManager.log.info("Generated URL to send to Fogbugz: " + output);
         return output;
     }
 
